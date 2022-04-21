@@ -32,8 +32,7 @@ def account_entries(n, ids, names, wealth_mag, wealth_trend, freq):
 
 def accounts(n, k):
     ids, names, wealth_mag, wealth_trend, freq = account_params(k)
-    df = account_entries(n, ids, names, wealth_mag, wealth_trend, freq)
-    return df
+    return account_entries(n, ids, names, wealth_mag, wealth_trend, freq)
 
 
 def json_entries(n, *args):

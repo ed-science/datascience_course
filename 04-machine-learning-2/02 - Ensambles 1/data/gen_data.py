@@ -6,6 +6,7 @@ Data generation script for the "Introduction to Ensembles" blog post.
 Author: Sebastian Flennerhag
 ---------------------------------------------------------------------
 """
+
 from __future__ import print_function, division
 
 import sys
@@ -48,7 +49,8 @@ parser.add_argument('-e', type=str, nargs='*',
 
 
 if __name__ == '__main__':
-    print(__doc__); sys.stdout.flush()
+    print(__doc__)
+    sys.stdout.flush()
     args = parser.parse_args()
 
     # Drop excluded features
@@ -60,13 +62,16 @@ if __name__ == '__main__':
         f = ("https://media.githubusercontent.com/media/fivethirtyeight/"
              "data/master/science-giving/science_federal_giving.csv")
     else:
-        print("Loading data from %s ..." % args.f, end=" "); sys.stdout.flush()
+        print(f"Loading data from {args.f} ...", end=" ")
+        sys.stdout.flush()
         f = args.f
 
     df = pd.read_csv(f, usecols=usecols, low_memory=False)
 
-    print("done"); sys.stdout.flush()
-    print("Formatting features ...", end=" "); sys.stdout.flush()
+    print("done")
+    sys.stdout.flush()
+    print("Formatting features ...", end=" ")
+    sys.stdout.flush()
 
     # Drop NaNs
     df.dropna(inplace=True)
@@ -81,7 +86,8 @@ if __name__ == '__main__':
         df.cand_pty_affiliation.apply(lambda x: x in ["DEM", "REP"]), :]
     df = df.loc[df.transaction_amt > 0, :]
 
-    print("done"); sys.stdout.flush()
+    print("done")
+    sys.stdout.flush()
 
     if args.n:
         print("Sampling ...", end=" "); sys.stdout.flush()
@@ -95,8 +101,11 @@ if __name__ == '__main__':
         df = df.iloc[:args.n, :]
         print("done"); sys.stdout.flush()
 
-    print("Writing to file ...", end=" "); sys.stdout.flush()
+    print("Writing to file ...", end=" ")
+    sys.stdout.flush()
     df.to_csv(args.o, index=False)
-    print("done"); sys.stdout.flush()
+    print("done")
+    sys.stdout.flush()
 
-    print("Job complete."); sys.stdout.flush()
+    print("Job complete.")
+    sys.stdout.flush()
